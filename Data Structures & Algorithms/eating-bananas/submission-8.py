@@ -1,0 +1,20 @@
+from math import ceil
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+
+        l = 1
+        r = max(piles)
+        res = float('inf')
+
+        
+        while l <= r:
+            k = l + (r-l) // 2
+            hours = 0
+            for num in piles:
+                hours += ceil(num / k)
+            if hours <= h:
+                res = min(k, res)
+                r = k - 1
+            else:
+                l = k +1
+        return res
